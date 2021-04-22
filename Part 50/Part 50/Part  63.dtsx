@@ -1,0 +1,1413 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/21/2021 9:10:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-64Q91DS"
+  DTS:CreatorName="DESKTOP-64Q91DS\asadb"
+  DTS:DTSID="{36274D61-0FD2-45E3-A52F-700FA151432D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Part  63"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{0DB8E8DF-6DA3-4AEE-8EA9-A967049B1D73}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-64Q91DS.SSIS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{90808F96-128A-4D1B-91BB-134129CB2D79}"
+      DTS:ObjectName="DESKTOP-64Q91DS.SSIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-64Q91DS;Initial Catalog=SSIS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_Lookup Demo"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{AC85360D-386F-41F0-9DDD-D3B610C89EBA}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_Lookup Demo"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_Lookup Demo\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select CustomerName,Region from dbo.LookupTable</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select CustomerName,Region from dbo.LookupTable) [refTable]
+where [refTable].[CustomerName] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerName" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Region" dataType="DT_WSTR" length="2" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output].Columns[CustomerName]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Lookup Demo\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-64Q91DS.SSIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-64Q91DS.SSIS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Lookup Demo\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Lookup Demo\Lookup.Inputs[Lookup Input].Columns[CustomerName]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="CustomerName"
+                      lineageId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output].Columns[CustomerName]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CustomerName</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_Lookup Demo\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup Match Output].Columns[Region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="2"
+                      lineageId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup Match Output].Columns[Region]"
+                      name="Region"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Region</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_Lookup Demo\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_Lookup Demo\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Lookup Demo\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\DFT_Lookup Demo\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Lookup Demo\Multicast.Outputs[Multicast Output 1]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\DFT_Lookup Demo\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Lookup Demo\Multicast 1"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast 1">
+              <inputs>
+                <input
+                  refId="Package\DFT_Lookup Demo\Multicast 1.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Lookup Demo\Multicast 1.Outputs[Multicast Output 1]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\DFT_Lookup Demo\Multicast 1.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Lookup Demo\SourceTable"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SourceTable"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select Customerid,CustomerName from dbo.SourceTable</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Lookup Demo\SourceTable.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-64Q91DS.SSIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-64Q91DS.SSIS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output].Columns[Customerid]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output].ExternalColumns[Customerid]"
+                      length="1"
+                      lineageId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output].Columns[Customerid]"
+                      name="Customerid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output].Columns[CustomerName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output].ExternalColumns[CustomerName]"
+                      length="6"
+                      lineageId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output].Columns[CustomerName]"
+                      name="CustomerName"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output].ExternalColumns[Customerid]"
+                      dataType="wstr"
+                      length="1"
+                      name="Customerid" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output].ExternalColumns[CustomerName]"
+                      dataType="wstr"
+                      length="6"
+                      name="CustomerName" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[Customerid]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[Customerid]"
+                      name="Customerid" />
+                    <outputColumn
+                      refId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[CustomerName]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[CustomerName]"
+                      name="CustomerName" />
+                    <outputColumn
+                      refId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_Lookup Demo.Paths[Lookup Match Output]"
+              endId="Package\DFT_Lookup Demo\Multicast.Inputs[Multicast Input 1]"
+              name="Lookup Match Output"
+              startId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_Lookup Demo.Paths[Lookup No Match Output]"
+              endId="Package\DFT_Lookup Demo\Multicast 1.Inputs[Multicast Input 1]"
+              name="Lookup No Match Output"
+              startId="Package\DFT_Lookup Demo\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFT_Lookup Demo.Paths[OLE DB Source Output]"
+              endId="Package\DFT_Lookup Demo\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_Lookup Demo\SourceTable.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Inner Join Demo"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{25541C7C-9CF6-4795-93EA-05EDB23AC089}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Inner Join Demo"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Inner Join Demo\LookupTable"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="LookupTable"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select CustomerName,Region from dbo.LookupTable</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Inner Join Demo\LookupTable.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-64Q91DS.SSIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-64Q91DS.SSIS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].Columns[CustomerName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].ExternalColumns[CustomerName]"
+                      length="6"
+                      lineageId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].Columns[CustomerName]"
+                      name="CustomerName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].Columns[Region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      length="2"
+                      lineageId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].Columns[Region]"
+                      name="Region"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].ExternalColumns[CustomerName]"
+                      dataType="wstr"
+                      length="6"
+                      name="CustomerName" />
+                    <externalMetadataColumn
+                      refId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="2"
+                      name="Region" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Error Output].Columns[CustomerName]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Error Output].Columns[CustomerName]"
+                      name="CustomerName" />
+                    <outputColumn
+                      refId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      name="Region" />
+                    <outputColumn
+                      refId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Inner Join Demo\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Inner Join Demo\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Inner Join Demo\Merge Join.Inputs[Merge Join Left Input].Columns[CustomerName]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="CustomerName"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Inner Join Demo\Sort.Outputs[Sort Output].Columns[CustomerName]" />
+                    <inputColumn
+                      refId="Package\Inner Join Demo\Merge Join.Inputs[Merge Join Left Input].Columns[Customerid]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="Customerid"
+                      lineageId="Package\Inner Join Demo\Sort.Outputs[Sort Output].Columns[Customerid]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Inner Join Demo\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Inner Join Demo\Merge Join.Inputs[Merge Join Right Input].Columns[CustomerName]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="CustomerName"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Inner Join Demo\Sort 1.Outputs[Sort Output].Columns[CustomerName]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Inner Join Demo\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inner Join Demo\Merge Join.Outputs[Merge Join Output].Columns[Customerid]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Inner Join Demo\Merge Join.Outputs[Merge Join Output].Columns[Customerid]"
+                      name="Customerid">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Inner Join Demo\Merge Join.Inputs[Merge Join Left Input].Columns[Customerid]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Inner Join Demo\Merge Join.Outputs[Merge Join Output].Columns[CustomerName]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Inner Join Demo\Merge Join.Outputs[Merge Join Output].Columns[CustomerName]"
+                      name="CustomerName"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Inner Join Demo\Merge Join.Inputs[Merge Join Left Input].Columns[CustomerName]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Inner Join Demo\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Inner Join Demo\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Inner Join Demo\Multicast.Outputs[Multicast Output 1]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Inner Join Demo\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Inner Join Demo\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Inner Join Demo\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Inner Join Demo\Sort.Inputs[Sort Input].Columns[Customerid]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="Customerid"
+                      lineageId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].Columns[Customerid]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Inner Join Demo\Sort.Inputs[Sort Input].Columns[CustomerName]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="CustomerName"
+                      lineageId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].Columns[CustomerName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Inner Join Demo\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inner Join Demo\Sort.Outputs[Sort Output].Columns[Customerid]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Inner Join Demo\Sort.Outputs[Sort Output].Columns[Customerid]"
+                      name="Customerid">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].Columns[Customerid]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Inner Join Demo\Sort.Outputs[Sort Output].Columns[CustomerName]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Inner Join Demo\Sort.Outputs[Sort Output].Columns[CustomerName]"
+                      name="CustomerName"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].Columns[CustomerName]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Inner Join Demo\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Inner Join Demo\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Inner Join Demo\Sort 1.Inputs[Sort Input].Columns[CustomerName]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="CustomerName"
+                      lineageId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].Columns[CustomerName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Inner Join Demo\Sort 1.Inputs[Sort Input].Columns[Region]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="Region"
+                      lineageId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].Columns[Region]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Inner Join Demo\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inner Join Demo\Sort 1.Outputs[Sort Output].Columns[CustomerName]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Inner Join Demo\Sort 1.Outputs[Sort Output].Columns[CustomerName]"
+                      name="CustomerName"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].Columns[CustomerName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Inner Join Demo\Sort 1.Outputs[Sort Output].Columns[Region]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Inner Join Demo\Sort 1.Outputs[Sort Output].Columns[Region]"
+                      name="Region">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output].Columns[Region]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Inner Join Demo\SourceTable"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SourceTable"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select Customerid,CustomerName from dbo.SourceTable</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Inner Join Demo\SourceTable.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-64Q91DS.SSIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-64Q91DS.SSIS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].Columns[Customerid]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].ExternalColumns[Customerid]"
+                      length="1"
+                      lineageId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].Columns[Customerid]"
+                      name="Customerid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].Columns[CustomerName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].ExternalColumns[CustomerName]"
+                      length="6"
+                      lineageId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].Columns[CustomerName]"
+                      name="CustomerName"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].ExternalColumns[Customerid]"
+                      dataType="wstr"
+                      length="1"
+                      name="Customerid" />
+                    <externalMetadataColumn
+                      refId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output].ExternalColumns[CustomerName]"
+                      dataType="wstr"
+                      length="6"
+                      name="CustomerName" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[Customerid]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[Customerid]"
+                      name="Customerid" />
+                    <outputColumn
+                      refId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[CustomerName]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[CustomerName]"
+                      name="CustomerName" />
+                    <outputColumn
+                      refId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Inner Join Demo.Paths[Merge Join Output]"
+              endId="Package\Inner Join Demo\Multicast.Inputs[Multicast Input 1]"
+              name="Merge Join Output"
+              startId="Package\Inner Join Demo\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Inner Join Demo.Paths[OLE DB Source Output]"
+              endId="Package\Inner Join Demo\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Inner Join Demo\SourceTable.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Inner Join Demo.Paths[OLE DB Source Output1]"
+              endId="Package\Inner Join Demo\Sort 1.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Inner Join Demo\LookupTable.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Inner Join Demo.Paths[Sort Output]"
+              endId="Package\Inner Join Demo\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Inner Join Demo\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Inner Join Demo.Paths[Sort Output1]"
+              endId="Package\Inner Join Demo\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Inner Join Demo\Sort 1.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="168.8,41.6"
+          Id="Package\DFT_Lookup Demo"
+          TopLeft="339.999986489614,182.86666811996" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Inner Join Demo"
+          TopLeft="311.666654282147,45.9333336983787" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_Lookup Demo">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\DFT_Lookup Demo\SourceTable"
+          TopLeft="155.857142857143,33.7142857142857" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\DFT_Lookup Demo\Lookup"
+          TopLeft="188.282051282051,154.461538461538" />
+        <EdgeLayout
+          Id="Package\DFT_Lookup Demo.Paths[OLE DB Source Output]"
+          TopLeft="224.657142857143,75.3142857142857">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.0249084249082,79.1472527472527"
+              Start="0,0"
+              End="20.0249084249082,71.6472527472527">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5736263736264" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.5736263736264"
+                    Point2="0,39.5736263736264"
+                    Point3="4,39.5736263736264" />
+                  <mssgle:LineSegment
+                    End="16.0249084249082,39.5736263736264" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.0249084249082,39.5736263736264"
+                    Point2="20.0249084249082,39.5736263736264"
+                    Point3="20.0249084249082,43.5736263736264" />
+                  <mssgle:LineSegment
+                    End="20.0249084249082,71.6472527472527" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="119.2,41.6"
+          Id="Package\DFT_Lookup Demo\Multicast"
+          TopLeft="34.6666666666668,262" />
+        <NodeLayout
+          Size="128,41.6"
+          Id="Package\DFT_Lookup Demo\Multicast 1"
+          TopLeft="328,258" />
+        <EdgeLayout
+          Id="Package\DFT_Lookup Demo.Paths[Lookup Match Output]"
+          TopLeft="227.215384615385,196.061538461538">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-132.948717948718,65.9384615384616"
+              Start="0,0"
+              End="-132.948717948718,58.4384615384616">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.9287143625606" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.9287143625606"
+                    Point2="0,26.9287143625606"
+                    Point3="-4,26.9287143625606" />
+                  <mssgle:LineSegment
+                    End="-128.948717948718,26.9287143625606" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-128.948717948718,26.9287143625606"
+                    Point2="-132.948717948718,26.9287143625606"
+                    Point3="-132.948717948718,30.9287143625606" />
+                  <mssgle:LineSegment
+                    End="-132.948717948718,58.4384615384616" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-123.534398036859,31.9287143625606,114.120078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Lookup Demo.Paths[Lookup No Match Output]"
+          TopLeft="262.148717948718,196.061538461538">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="129.851282051282,61.9384615384616"
+              Start="0,0"
+              End="129.851282051282,54.4384615384616">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.2951479289941" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.2951479289941"
+                    Point2="0,25.2951479289941"
+                    Point3="4,25.2951479289941" />
+                  <mssgle:LineSegment
+                    End="125.851282051282,25.2951479289941" />
+                  <mssgle:CubicBezierSegment
+                    Point1="125.851282051282,25.2951479289941"
+                    Point2="129.851282051282,25.2951479289941"
+                    Point3="129.851282051282,29.2951479289941" />
+                  <mssgle:LineSegment
+                    End="129.851282051282,54.4384615384616" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0.250601963141037,30.2951479289941,129.350078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Inner Join Demo">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="97.6,41.6"
+          Id="Package\Inner Join Demo\Sort"
+          TopLeft="273.611100238783,215.222223932655" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Inner Join Demo\Merge Join"
+          TopLeft="413.194428025573,329.33333595064" />
+        <NodeLayout
+          Size="106.4,41.6"
+          Id="Package\Inner Join Demo\Sort 1"
+          TopLeft="549.999978144965,207.277779425074" />
+        <NodeLayout
+          Size="119.2,41.6"
+          Id="Package\Inner Join Demo\Multicast"
+          TopLeft="437.499982615313,443.444447968624" />
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\Inner Join Demo\SourceTable"
+          TopLeft="255.416656517321,87.9666673657629" />
+        <NodeLayout
+          Size="138.4,41.6"
+          Id="Package\Inner Join Demo\LookupTable"
+          TopLeft="533.194423257202,85.5111117906924" />
+        <EdgeLayout
+          Id="Package\Inner Join Demo.Paths[Sort Output1]"
+          TopLeft="603.199978144965,248.877779425074">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-104.938883452725,80.4555565255661"
+              Start="0,0"
+              End="-104.938883452725,72.9555565255661">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.6846347212501" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.6846347212501"
+                    Point2="0,47.6846347212501"
+                    Point3="-4,47.6846347212501" />
+                  <mssgle:LineSegment
+                    End="-100.938883452725,47.6846347212501" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-100.938883452725,47.6846347212501"
+                    Point2="-104.938883452725,47.6846347212501"
+                    Point3="-104.938883452725,51.6846347212501" />
+                  <mssgle:LineSegment
+                    End="-104.938883452725,72.9555565255661" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inner Join Demo.Paths[Sort Output]"
+          TopLeft="322.411100238783,256.822223932655">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="155.58332778679,72.5111120179848"
+              Start="0,0"
+              End="155.58332778679,65.0111120179848">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.2555560089924" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.2555560089924"
+                    Point2="0,36.2555560089924"
+                    Point3="4,36.2555560089924" />
+                  <mssgle:LineSegment
+                    End="151.58332778679,36.2555560089924" />
+                  <mssgle:CubicBezierSegment
+                    Point1="151.58332778679,36.2555560089924"
+                    Point2="155.58332778679,36.2555560089924"
+                    Point3="155.58332778679,40.2555560089924" />
+                  <mssgle:LineSegment
+                    End="155.58332778679,65.0111120179848" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inner Join Demo.Paths[OLE DB Source Output1]"
+          TopLeft="602.797200701084,127.111111790692">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80.1666676343811"
+              Start="0,0"
+              End="0,72.6666676343811">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.6666676343811" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inner Join Demo.Paths[OLE DB Source Output]"
+          TopLeft="323.313878378052,129.566667365763">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,85.6555565668919"
+              Start="0,0"
+              End="0,78.1555565668919">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.1555565668919" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inner Join Demo.Paths[Merge Join Output]"
+          TopLeft="477.994428025573,370.93333595064">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.1055545897396,72.5111120179848"
+              Start="0,0"
+              End="19.1055545897396,65.0111120179848">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.2555560089924" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.2555560089924"
+                    Point2="0,36.2555560089924"
+                    Point3="4,36.2555560089924" />
+                  <mssgle:LineSegment
+                    End="15.1055545897396,36.2555560089924" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.1055545897396,36.2555560089924"
+                    Point2="19.1055545897396,36.2555560089924"
+                    Point3="19.1055545897396,40.2555560089924" />
+                  <mssgle:LineSegment
+                    End="19.1055545897396,65.0111120179848" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="1.5527772948698,41.2555560089924,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Inner Join Demo\SourceTable">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Inner Join Demo\LookupTable">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Lookup Demo\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
