@@ -1,0 +1,79 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/8/2021 4:35:51 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-64Q91DS"
+  DTS:CreatorName="DESKTOP-64Q91DS\asadb"
+  DTS:DTSID="{1F50BC10-D315-4FC5-A25D-D1B88EECA112}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="113 Part"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{9736485C-A2FC-4D3F-A5BD-7A7845A3AE58}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{912E538C-A907-4F4B-9CB4-2A4D29DA5513}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="MONTH(getdate()) == 1 ? &quot;Jan&quot; :&#xA;MONTH(getdate()) == 2 ? &quot;Feb&quot; :&#xA;MONTH(getdate()) == 3 ? &quot;Mar&quot; :&#xA;MONTH(getdate()) == 4 ? &quot;Apr&quot; :&#xA;MONTH(getdate()) == 5 ? &quot;May&quot; :&#xA;MONTH(getdate()) == 6 ? &quot;Jun&quot; :&#xA;MONTH(getdate()) == 7 ? &quot;Jul&quot; :&#xA;MONTH(getdate()) == 8 ? &quot;Aug&quot; :&#xA;MONTH(getdate()) == 9 ? &quot;Sep&quot; :&#xA;MONTH(getdate()) == 10 ? &quot;Oct&quot; :&#xA;MONTH(getdate()) == 11 ? &quot;Nov&quot; :&quot;Dec&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="MonthName">
+      <DTS:VariableValue
+        DTS:DataType="8">May</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{23BDE46D-F9C9-4D8C-BF88-5E138101DA4A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="MonthNameExp">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{0CBF875F-7238-4ABC-8BE6-1290E10415D0}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="MONTH(getdate()) == 1 ? &quot;Jan&quot; :&#xA;MONTH(getdate()) == 2 ? &quot;Feb&quot; :&#xA;MONTH(getdate()) == 3 ? &quot;Mar&quot; :&#xA;MONTH(getdate()) == 4 ? &quot;Apr&quot; :&#xA;MONTH(getdate()) == 5 ? &quot;May&quot; :&#xA;MONTH(getdate()) == 6 ? &quot;Jun&quot; :&#xA;MONTH(getdate()) == 7 ? &quot;Jul&quot; :&#xA;MONTH(getdate()) == 8 ? &quot;Aug&quot; :&#xA;MONTH(getdate()) == 9 ? &quot;Sep&quot; :&#xA;MONTH(getdate()) == 10 ? &quot;Oct&quot; :&#xA;MONTH(getdate()) == 11 ? &quot;Nov&quot; :&quot;Dec&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Expression Task"
+          TopLeft="326.6666536861,197.600001570384" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
